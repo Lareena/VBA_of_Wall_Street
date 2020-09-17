@@ -1,0 +1,39 @@
+Sub Ticker()
+    Dim total As Double
+    
+    lastRow = Cells(Rows.Count, "A").End(xlUp).row
+    
+    Range("I1").Value = "Ticker"
+    Range("L1").Value = "Total Stock Volume"
+    
+    For i = 2 To lastRow
+       If Cells(i, 1).Value <> Cells(i + 1, 1).Value Then
+       
+            Range("I" & 2 + l).Value = Cells(i, 1).Value
+            
+            Range("L" & 2 + l).Value = total
+            
+            total = 0
+            
+            l = l + 1
+            
+        Else
+            total = total + Cells(i, 7).Value
+        End If
+    Next i
+End Sub
+
+Sub YearlyChange()
+    Dim yearOpen As Double
+    Dim yearClose As Double
+    
+    Range("J" & 2 + 1).Value = "YearlyChange"
+    Range("K" & 2 + 1).Value = "PercentChange"
+    
+    lastRow = Cells(Rows.Count, ["3", "6"]).End(xlUp).row
+    
+    
+    
+    For i = 2 To lastRow
+      If Cells(i, 1).Value <> Cells(i + 1, 1).Value Then
+        (Cells(i,6)-Cells(i,3)) = Range("J" & 2 +1).Value
